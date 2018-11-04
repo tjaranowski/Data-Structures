@@ -1,5 +1,7 @@
 package pl.nosystems.java.datastructures;
 
+import java.util.NoSuchElementException;
+
 @SuppressWarnings("WeakerAccess")
 public final class DoubleLinkedList<T> {
     @SuppressWarnings("SameParameterValue")
@@ -140,9 +142,15 @@ public final class DoubleLinkedList<T> {
             public T getNextAndMovePointerToSubsequentElement() {
                 if(isBeforeRoot) {
                     isBeforeRoot = false;
+                    if(currentNode == null) {
+                        throw new NoSuchElementException("Iterated out of bounds. Make sure that hasNext() returns true before calling this method.");
+                    }
                     return currentNode.data;
                 }
                 currentNode = currentNode.next;
+                if(currentNode == null) {
+                    throw new NoSuchElementException("Iterated out of bounds. Make sure that hasNext() returns true before calling this method.");
+                }
                 return currentNode.data;
             }
         };
