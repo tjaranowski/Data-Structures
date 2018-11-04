@@ -3,6 +3,8 @@ package pl.nosystems.java.datastructures;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -233,5 +235,19 @@ public final class DoubleLinkedListTest {
 
         iterator.getNextAndMovePointerToSubsequentElement();
         assertFalse(iterator.hasNext());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void iterateAfterHasNextReturnsFalseOnEmptyListTest() {
+        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        iterator.getNextAndMovePointerToSubsequentElement();
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void iterateAfterHasNextReturnsFalseOnNonEmptyListTest() {
+        list.add(VALUE);
+        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.getNextAndMovePointerToSubsequentElement();
     }
 }
