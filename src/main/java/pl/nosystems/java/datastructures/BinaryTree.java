@@ -15,8 +15,19 @@ public final class BinaryTree<T> {
     @SuppressWarnings("unused")
     public enum DIR {LEFT,RIGHT}
 
+    @SuppressWarnings("unused")
     public static abstract class DataPlaceChooser<T> {
         abstract public DIR getDirection(final T currentNodeData);
+    }
+
+    interface BinaryTreeTraversal<T> {
+        boolean hasLeftChild();
+        boolean hasRightChild();
+
+        T getData();
+
+        void moveToLeftChildOrThrow();
+        void moveToRightChildOrThrow();
     }
 
     private Node root;
@@ -34,7 +45,7 @@ public final class BinaryTree<T> {
             return;
         }
 
-        Node currentParent = null;
+        Node currentParent;
         Node current = root;
         while(true) {
             final DIR dir = placeChooser.getDirection(current.data);
@@ -57,5 +68,46 @@ public final class BinaryTree<T> {
             }
         }
 
+    }
+
+    public BinaryTreeTraversal<T> getTraversal() {
+        if(root == null) {
+            return null;
+        }
+
+        return new BinaryTreeTraversal<T>() {
+            private Node current = root;
+
+            @Override
+            public boolean hasLeftChild() {
+                return current.left != null;
+            }
+
+            @Override
+            public boolean hasRightChild() {
+                return current.right != null;
+            }
+
+            @Override
+            public T getData() {
+                return current.data;
+            }
+
+            @Override
+            public void moveToLeftChildOrThrow() {
+                if(!hasLeftChild()) {
+                    throw new RuntimeException("Left child does not exist!");
+                }
+                current = current.left;
+            }
+
+            @Override
+            public void moveToRightChildOrThrow() {
+                if(!hasRightChild()) {
+                    throw new RuntimeException("Right child does not exist!");
+                }
+                current = current.right;
+            }
+        };
     }
 }
