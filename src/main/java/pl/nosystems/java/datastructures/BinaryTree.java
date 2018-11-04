@@ -32,6 +32,27 @@ public final class BinaryTree<T> {
 
     private Node root;
 
+    private void putNewNodeBasedOnDirection(final Node destinationNode, final DIR dir, final T data) {
+        final Node newNode = new Node(data);
+        if(dir == DIR.LEFT) {
+            destinationNode.left = newNode;
+        } else {
+            destinationNode.right = newNode;
+        }
+    }
+
+    private Node traverseBasedOnDirection(final Node node, final DIR dir) {
+        if(dir == DIR.LEFT) {
+            return node.left;
+        } else {
+            return node.right;
+        }
+    }
+
+    private boolean isNodeReferenceFree(final Node node) {
+        return node == null;
+    }
+
     public BinaryTree() {}
 
     public BinaryTree(final T root) {
@@ -39,7 +60,6 @@ public final class BinaryTree<T> {
     }
 
     public void put(final T data, final DataPlaceChooser<T> placeChooser) {
-
         if(root == null) {
             root = new Node(data);
             return;
@@ -51,23 +71,13 @@ public final class BinaryTree<T> {
             final DIR dir = placeChooser.getDirection(current.data);
 
             currentParent = current;
-            if(dir == DIR.LEFT) {
-                current = current.left;
-            } else {
-                current = current.right;
-            }
+            current = traverseBasedOnDirection(current,dir);
 
-            if(current == null) {
-                final Node newNode = new Node(data);
-                if(dir == DIR.LEFT) {
-                    currentParent.left = newNode;
-                } else {
-                    currentParent.right = newNode;
-                }
+            if(isNodeReferenceFree(current)) {
+                putNewNodeBasedOnDirection(currentParent,dir,data);
                 return;
             }
         }
-
     }
 
     public BinaryTreeTraversal<T> getTraversal() {
