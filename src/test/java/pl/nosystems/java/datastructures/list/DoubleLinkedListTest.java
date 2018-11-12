@@ -112,7 +112,7 @@ public final class DoubleLinkedListTest {
     public void addTwoRemoveNonExistentTest() {
         list.add(VALUE);
         list.add(VALUE);
-        list.removeFirst(VALUE+1);
+        assertFalse(list.removeFirst(VALUE+1));
 
         assertThat(list.getSize(),is(equalTo(2)));
 
@@ -131,7 +131,7 @@ public final class DoubleLinkedListTest {
         list.add(VALUE);
         list.add(VALUE);
         list.add(VALUE);
-        list.removeFirst(VALUE+1);
+        assertFalse(list.removeFirst(VALUE+1));
 
         assertThat(list.getSize(),is(equalTo(3)));
 
@@ -171,7 +171,7 @@ public final class DoubleLinkedListTest {
         }
 
         for (int i = 99; i >= 0; i--) {
-            list.removeFirst(i);
+            assertTrue(list.removeFirst(i));
         }
 
         assertThat(list.getSize(),is(equalTo(0)));
@@ -187,10 +187,10 @@ public final class DoubleLinkedListTest {
         }
 
         for (int i = 50; i >= 0; i--) {
-            list.removeFirst(i);
+            assertTrue(list.removeFirst(i));
         }
         for (int i = 51; i < 100 ; i++) {
-            list.removeFirst(i);
+            assertTrue(list.removeFirst(i));
         }
 
         assertThat(list.getSize(),is(equalTo(0)));
@@ -204,9 +204,9 @@ public final class DoubleLinkedListTest {
         list.add(null);
         list.add(null);
         list.add(null);
-        list.removeFirst(null);
-        list.removeFirst(null);
-        list.removeFirst(null);
+        assertTrue(list.removeFirst(null));
+        assertTrue(list.removeFirst(null));
+        assertTrue(list.removeFirst(null));
 
         assertThat(list.getSize(),is(equalTo(0)));
 

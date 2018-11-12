@@ -17,6 +17,13 @@ public final class BareDoubleLinkedListOperationsTest {
         list = new BareDoubleLinkedList<>();
     }
 
+    private <T> void assertListContainsOnlyTwoElements(final BareDoubleLinkedList<T> list) {
+        assertNotEquals(list.getFirstNode(),list.getLastNode());
+
+        assertEquals(list.getFirstNode().getNext(),list.getLastNode());
+        assertEquals(list.getLastNode().getPrevious(),list.getFirstNode());
+    }
+
     @Test
     public void cleanListTest() {
         assertNull(list.getFirstNode());
@@ -39,7 +46,7 @@ public final class BareDoubleLinkedListOperationsTest {
 
         assertTrue(BareDoubleLinkedListOperations.removeFirst(list,null));
 
-        assertNotEquals(list.getFirstNode(),list.getLastNode());
+        assertListContainsOnlyTwoElements(list);
 
         assertNull(list.getFirstNode().getPrevious());
         assertNull(list.getLastNode().getNext());
@@ -56,7 +63,7 @@ public final class BareDoubleLinkedListOperationsTest {
 
         assertTrue(BareDoubleLinkedListOperations.removeFirst(list,2));
 
-        assertNotEquals(list.getFirstNode(),list.getLastNode());
+        assertListContainsOnlyTwoElements(list);
 
         assertNull(list.getFirstNode().getPrevious());
         assertNull(list.getLastNode().getNext());
