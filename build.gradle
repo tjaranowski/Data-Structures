@@ -10,6 +10,10 @@ jacocoTestReport {
 	}
 }
 
+jacoco {
+	toolVersion = "0.8.2"
+}
+
 repositories {
 	jcenter()
 	mavenCentral()
