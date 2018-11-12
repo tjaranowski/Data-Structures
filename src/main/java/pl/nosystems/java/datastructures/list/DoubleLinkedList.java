@@ -1,4 +1,4 @@
-package pl.nosystems.java.datastructures;
+package pl.nosystems.java.datastructures.list;
 
 import java.util.NoSuchElementException;
 

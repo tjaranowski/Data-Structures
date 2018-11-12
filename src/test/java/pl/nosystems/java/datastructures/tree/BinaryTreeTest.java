@@ -1,4 +1,4 @@
-package pl.nosystems.java.datastructures;
+package pl.nosystems.java.datastructures.tree;
 
 import org.junit.Before;
 import org.junit.Test;

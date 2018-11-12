@@ -1,9 +1,9 @@
-package pl.nosystems.java.datastructures;
+package pl.nosystems.java.datastructures.tree;
 
 @SuppressWarnings("WeakerAccess")
 public final class BinaryTree<T> {
     private class Node {
-        private T data;
+        private final T data;
         private Node left;
         private Node right;
 
