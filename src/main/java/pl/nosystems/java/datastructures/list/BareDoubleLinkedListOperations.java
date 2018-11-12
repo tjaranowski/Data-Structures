@@ -1,5 +1,7 @@
 package pl.nosystems.java.datastructures.list;
 
+import java.util.Objects;
+
 @SuppressWarnings({"unused", "WeakerAccess"})
 public final class BareDoubleLinkedListOperations {
     private BareDoubleLinkedListOperations() {
@@ -40,12 +42,11 @@ public final class BareDoubleLinkedListOperations {
         if (prev == null && next!=null) {
             removeNodeThatHasOnlyNext(list, node, next);
 
-        } else if (next == null && prev!=null) {
+        } else if (next == null && prev!= null) {
             removeNodeThatHasOnlyPrevious(list, node, prev);
 
         } else {
-            removeNodeThatIsInMiddle(prev, next);
-
+            removeNodeThatIsInMiddle(Objects.requireNonNull(prev), next);
         }
     }
 
