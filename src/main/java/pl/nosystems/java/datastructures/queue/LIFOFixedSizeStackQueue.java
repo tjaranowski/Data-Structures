@@ -4,9 +4,9 @@ import pl.nosystems.java.datastructures.stack.FixedSizeStack;
 import pl.nosystems.java.datastructures.stack.StackEmpty;
 import pl.nosystems.java.datastructures.stack.StackFull;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class LIFOFixedSizeStackQueue<T> implements Queue<T> {
-    private FixedSizeStack<T> stack;
+    private final FixedSizeStack<T> stack;
 
     public LIFOFixedSizeStackQueue(FixedSizeStack<T> stack) {
         this.stack = stack;

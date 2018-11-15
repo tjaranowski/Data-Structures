@@ -250,4 +250,39 @@ public final class DoubleLinkedListTest {
         iterator.getNextAndMovePointerToSubsequentElement();
         iterator.getNextAndMovePointerToSubsequentElement();
     }
+
+    @Test
+    public void addThreeRemoveInMiddleTest() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        assertTrue(list.removeFirst(2));
+
+        assertThat(list.getSize(),is(equalTo(2)));
+
+        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+
+        assertTrue(iterator.hasNext());
+        assertThat(iterator.getNextAndMovePointerToSubsequentElement(),is(equalTo(1)));
+
+        assertTrue(iterator.hasNext());
+        assertThat(iterator.getNextAndMovePointerToSubsequentElement(),is(equalTo(3)));
+
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void addThreeRemoveInMiddleIterateAfterHasNextReturnedFalseTest() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        assertTrue(list.removeFirst(2));
+
+        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.getNextAndMovePointerToSubsequentElement();
+    }
 }

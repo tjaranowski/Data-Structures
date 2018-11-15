@@ -4,31 +4,14 @@ import java.util.NoSuchElementException;
 
 @SuppressWarnings("WeakerAccess")
 public final class DoubleLinkedList<T> {
-    @SuppressWarnings("SameParameterValue")
-    private class Node {
-        private Node previous;
-        private final T data;
-        private Node next;
-
-        Node(final T data) {
-            previous = next = null;
-            this.data = data;
-        }
-
-        Node(final Node previous, final T data, final Node next) {
-            this.previous = previous;
-            this.data = data;
-            this.next = next;
-        }
-    }
 
     public interface Iterator<T> {
         boolean hasNext();
         T getNextAndMovePointerToSubsequentElement();
     }
 
-    private Node root;
-    private Node lastNode;
+    private DoubleLinkedListNode<T> root;
+    private DoubleLinkedListNode<T> lastNode;
     private int size = 0;
 
     private void afterSuccessfullyAddedOneElement() {
@@ -36,36 +19,36 @@ public final class DoubleLinkedList<T> {
     }
 
     private void addFirstElement(final T data) {
-        lastNode = root = new Node(data);
+        lastNode = root = new DoubleLinkedListNode<>(data);
     }
 
     private void addNextElement(final T data) {
-        final Node newNode = new Node(lastNode,data,null);
-        lastNode.next = newNode;
+        final DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<>(lastNode,data,null);
+        lastNode.setNext(newNode);
         lastNode = newNode;
     }
 
-    private void removeNodeThatHasOnlyNext(final Node node, final Node next) {
-        next.previous = null;
-        node.next = null;
+    private void removeNodeThatHasOnlyNext(final DoubleLinkedListNode<T> node, final DoubleLinkedListNode<T> next) {
+        next.setPrevious(null);
+        node.setNext(null);
         root = next;
     }
 
-    private void removeNodeThatHasOnlyPrevious(final Node node,final Node prev) {
-        lastNode = lastNode.previous;
+    private void removeNodeThatHasOnlyPrevious(final DoubleLinkedListNode<T> node,final DoubleLinkedListNode<T> prev) {
+        lastNode = lastNode.getPrevious();
 
-        prev.next = null;
-        node.previous = null;
+        prev.setNext(null);
+        node.setPrevious(null);
     }
 
-    private void removeNodeThatIsInMiddle(final Node prev, final Node next) {
-        prev.next = next;
-        next.previous = prev;
+    private void removeNodeThatIsInMiddle(final DoubleLinkedListNode<T> prev, final DoubleLinkedListNode<T> next) {
+        prev.setNext(next);
+        next.setPrevious(prev);
     }
 
-    private void removeNode(final Node node) {
-        Node prev = node.previous;
-        Node next = node.next;
+    private void removeNode(final DoubleLinkedListNode<T> node) {
+        DoubleLinkedListNode<T> prev = node.getPrevious();
+        DoubleLinkedListNode<T>next = node.getNext();
 
         size--;
 
@@ -74,10 +57,10 @@ public final class DoubleLinkedList<T> {
             return;
         }
 
-        if(prev == null) {
+        if(prev == null && next!=null) {
             removeNodeThatHasOnlyNext(node,next);
 
-        } else if(next == null) {
+        } else if(next == null && prev!=null) {
             removeNodeThatHasOnlyPrevious(node,prev);
 
         } else {
@@ -100,20 +83,20 @@ public final class DoubleLinkedList<T> {
             return false;
         }
 
-        Node currentNode = root;
+        DoubleLinkedListNode<T> currentNode = root;
         while(currentNode != null) {
-            if(currentNode.data == null) {
+            if(currentNode.getData() == null) {
                 if(data == null) {
                     removeNode(currentNode);
                     return true;
                 }
             } else {
-                if(currentNode.data.equals(data)) {
+                if(currentNode.getData().equals(data)) {
                     removeNode(currentNode);
                     return true;
                 }
             }
-            currentNode = currentNode.next;
+            currentNode = currentNode.getNext();
         }
         return false;
     }
@@ -125,7 +108,7 @@ public final class DoubleLinkedList<T> {
     public Iterator<T> getIterator() {
         return new Iterator<T>() {
             private boolean isBeforeRoot = true;
-            private Node currentNode = root;
+            private DoubleLinkedListNode<T> currentNode = root;
 
             @Override
             public boolean hasNext() {
@@ -134,7 +117,7 @@ public final class DoubleLinkedList<T> {
                     return root!=null;
                 }
 
-                return currentNode.next != null;
+                return currentNode.getNext() != null;
             }
 
            
@@ -145,13 +128,13 @@ public final class DoubleLinkedList<T> {
                     if(currentNode == null) {
                         throw new NoSuchElementException("Iterated out of bounds. Make sure that hasNext() returns true before calling this method.");
                     }
-                    return currentNode.data;
+                    return currentNode.getData();
                 }
-                currentNode = currentNode.next;
+                currentNode = currentNode.getNext();
                 if(currentNode == null) {
                     throw new NoSuchElementException("Iterated out of bounds. Make sure that hasNext() returns true before calling this method.");
                 }
-                return currentNode.data;
+                return currentNode.getData();
             }
         };
     }
