@@ -3,7 +3,7 @@ package pl.nosystems.java.datastructures.graph;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class BareDirectedGraph<T> {
 
     public static class Node<T> {
