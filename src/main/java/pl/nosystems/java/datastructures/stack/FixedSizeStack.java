@@ -1,7 +1,7 @@
 package pl.nosystems.java.datastructures.stack;
 
 @SuppressWarnings("WeakerAccess")
-public final class FixedSizeStack<T> {
+public final class FixedSizeStack<T> implements Stack<T> {
     private T[] stack;
     private int stackPointer = 0;
 
@@ -27,6 +27,7 @@ public final class FixedSizeStack<T> {
         return true;
     }
 
+    @Override
     public void putOrThrow(final T value) throws StackFull {
         if(isFull()) {
             throw new StackFull();
@@ -35,6 +36,7 @@ public final class FixedSizeStack<T> {
         internalPutAfterChecks(value);
     }
 
+    @Override
     public T popOrThrow() throws StackEmpty {
         if(isEmpty()) {
             throw new StackEmpty();
@@ -43,10 +45,12 @@ public final class FixedSizeStack<T> {
         return stack[--stackPointer];
     }
 
+    @Override
     public boolean isFull() {
         return stackPointer == stack.length;
     }
 
+    @Override
     public boolean isEmpty() {
         return stackPointer == 0;
     }

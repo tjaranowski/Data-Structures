@@ -57,10 +57,10 @@ public final class DoubleLinkedList<T> {
             return;
         }
 
-        if(prev == null && next!=null) {
+        if(prev == null) {
             removeNodeThatHasOnlyNext(node,next);
 
-        } else if(next == null && prev!=null) {
+        } else if(next == null) {
             removeNodeThatHasOnlyPrevious(node,prev);
 
         } else {

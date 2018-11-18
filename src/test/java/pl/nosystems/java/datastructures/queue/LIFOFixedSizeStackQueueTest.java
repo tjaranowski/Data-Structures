@@ -1,26 +1,17 @@
 package pl.nosystems.java.datastructures.queue;
 
-import org.junit.Before;
 import org.junit.Test;
 import pl.nosystems.java.datastructures.stack.FixedSizeStack;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+public class LIFOFixedSizeStackQueueTest extends LIFOStackQueueTest {
+    private static int QUEUE_SIZE = 10;
 
-public final class LIFOFixedSizeStackQueueTest {
-    private static final int QUEUE_SIZE = 10;
-    private LIFOFixedSizeStackQueue<Integer> queue;
-
-    @Before
-    public void setUp() {
-        queue = new LIFOFixedSizeStackQueue<>(new FixedSizeStack<>(new Integer[QUEUE_SIZE]));
-    }
-
-    @Test
-    public void addOneElementToQueueTest() throws QueueFull, QueueEmpty {
-        queue.putOrThrow(10);
-        assertThat(queue.getOrThrow(),is(equalTo(10)));
+    @Override
+    public void createNewStackQueue() {
+        if(MINIMUM_QUEUE_SIZE>QUEUE_SIZE) {
+            QUEUE_SIZE = MINIMUM_QUEUE_SIZE;
+        }
+        setQueue(new LIFOFixedSizeStackQueue<>(new FixedSizeStack<>(new Integer[QUEUE_SIZE])));
     }
 
     @Test(expected = QueueFull.class)
@@ -29,5 +20,4 @@ public final class LIFOFixedSizeStackQueueTest {
             queue.putOrThrow(i);
         }
     }
-
 }

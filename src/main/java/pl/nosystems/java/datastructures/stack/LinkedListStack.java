@@ -3,7 +3,7 @@ package pl.nosystems.java.datastructures.stack;
 import pl.nosystems.java.datastructures.list.DoubleLinkedListNode;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class LinkedListStack<T> {
+public class LinkedListStack<T> implements Stack<T> {
     private DoubleLinkedListNode<T> stackHead;
     private DoubleLinkedListNode<T> stackTail;
 
@@ -35,10 +35,12 @@ public class LinkedListStack<T> {
     }
 
     @SuppressWarnings("RedundantThrows")
+    @Override
     public void putOrThrow(final T value) throws StackFull {
         internalPutAfterChecks(value);
     }
 
+    @Override
     public T popOrThrow() throws StackEmpty {
         if(isEmpty()) {
             throw new StackEmpty();
@@ -48,10 +50,12 @@ public class LinkedListStack<T> {
     }
 
     @SuppressWarnings("SameReturnValue")
+    @Override
     public boolean isFull() {
         return false;
     }
 
+    @Override
     public boolean isEmpty() {
         return stackHead==null;
     }
