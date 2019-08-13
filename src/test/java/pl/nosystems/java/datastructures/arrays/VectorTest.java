@@ -14,6 +14,7 @@ public class VectorTest {
         Vector<Integer> vector = new Vector<>(2);
 
         // Then verify
+        assertEquals(2, vector.getCapacity());
         assertFalse(vector.contains(0));
         assertFalse(vector.contains(1));
         assertFalse(vector.contains(Integer.MIN_VALUE));
@@ -47,6 +48,7 @@ public class VectorTest {
         vector.putEnsuringCapacity(2, 5);
 
         // Then verify
+        assertTrue(vector.getCapacity() > 2);
         assertEquals(Integer.valueOf(2), vector.get(5));
         assertTrue(vector.contains(2));
     }
@@ -70,7 +72,7 @@ public class VectorTest {
         assertEquals(Integer.valueOf(300), vector.get(2));
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void givenNotEnoughCapacityShouldThrowException() {
 
         // Given
@@ -80,5 +82,15 @@ public class VectorTest {
         vector.put(3, 5);
 
         // Then should throw
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void givenIndexOutsideOfAllowedBoundsShouldThrow() {
+
+        // Given
+        Vector<Integer> vector = new Vector<>(2);
+
+        // When
+        vector.put(0, -100);
     }
 }
