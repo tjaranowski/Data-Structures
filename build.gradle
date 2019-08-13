@@ -14,6 +14,11 @@ buildscript {
 }
 
 
+compileJava   {
+	sourceCompatibility = '1.7'
+	targetCompatibility = '1.7'
+}
+
 pitest {
 	targetClasses = ['pl.nosystems.java.datastructures.*']
 	pitestVersion = '1.4.9'
