@@ -16,7 +16,7 @@ buildscript {
 
 pitest {
 	targetClasses = ['pl.nosystems.java.datastructures.*']
-	pitestVersion = '1.4.3'
+	pitestVersion = '1.4.9'
 	outputFormats = ['XML', 'HTML']
 	timestampedReports = false
 }
