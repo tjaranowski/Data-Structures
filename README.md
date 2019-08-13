@@ -7,6 +7,8 @@ Data structures implemented in Java
 
 # Data Structures currently in repository
 
+- Arrays
+  - Vector
 - Lists
   - ArrayList
   - DoubleLinkedList
