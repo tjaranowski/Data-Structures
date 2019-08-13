@@ -60,7 +60,7 @@ public class CircularBufferTest {
     @Test
     public void whenOverflowHappensSeveralTimesShouldReadCorrectly() {
         int FULL_OVERFLOW_COUNT = 10 + 1; // +1 for non-overflow pass
-        int CIRCULAR_BUFFER_SIZE = 2;
+        int CIRCULAR_BUFFER_SIZE = 3;
 
         // Given
         CircularBuffer<Integer> circularBuffer = new CircularBuffer<>(CIRCULAR_BUFFER_SIZE);
@@ -71,7 +71,22 @@ public class CircularBufferTest {
         }
 
         // Then verify
+        assertEquals(Integer.valueOf(FULL_OVERFLOW_COUNT * CIRCULAR_BUFFER_SIZE - 2), circularBuffer.read());
         assertEquals(Integer.valueOf(FULL_OVERFLOW_COUNT * CIRCULAR_BUFFER_SIZE - 1), circularBuffer.read());
         assertEquals(Integer.valueOf(FULL_OVERFLOW_COUNT * CIRCULAR_BUFFER_SIZE), circularBuffer.read());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenSizePassedToConstructorIsZeroShouldThrow() {
+
+        // When
+        new CircularBuffer<Integer>(0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenSizePassedToConstructorIsNegativeShouldThrow() {
+
+        // When
+        new CircularBuffer<Integer>(-100);
     }
 }
