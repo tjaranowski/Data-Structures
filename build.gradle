@@ -9,14 +9,14 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.2.4'
+		classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.4.0'
 	}
 }
 
 
 compileJava   {
-	sourceCompatibility = '1.7'
-	targetCompatibility = '1.7'
+	sourceCompatibility = '1.8'
+	targetCompatibility = '1.8'
 }
 
 pitest {
