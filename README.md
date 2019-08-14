@@ -12,6 +12,7 @@ Data structures implemented in Java
 - Lists
   - ArrayList
   - DoubleLinkedList
+  - LinkedList
 - Queues
   - LIFOLinkedListStackQueue
   - LIFOFixedSizeStackQueue
