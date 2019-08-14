@@ -11,7 +11,7 @@ public class LIFOFixedSizeStackQueueTest extends LIFOStackQueueTest {
         if(MINIMUM_QUEUE_SIZE>QUEUE_SIZE) {
             QUEUE_SIZE = MINIMUM_QUEUE_SIZE;
         }
-        setQueue(new LIFOFixedSizeStackQueue<>(new FixedSizeStack<>(new Integer[QUEUE_SIZE])));
+        setQueue(new LIFOFixedSizeStackQueue<>(new FixedSizeStack<>(QUEUE_SIZE)));
     }
 
     @Test(expected = QueueFull.class)

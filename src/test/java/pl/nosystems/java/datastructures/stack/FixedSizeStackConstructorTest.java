@@ -6,17 +6,17 @@ public final class FixedSizeStackConstructorTest {
 
     @Test
     public void constructorTest() {
-        new FixedSizeStack<>(new Integer[10]);
+        new FixedSizeStack<>(10);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void nullStackContainerPassedToConstructorTest() {
-        new FixedSizeStack<>(null);
+    public void zeroStackSizePassedToConstructorTest() {
+        new FixedSizeStack<>(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void zeroSizedContainerPassedToConstructorTest() {
-        new FixedSizeStack<>(new Integer[0]);
+    public void negativeStackSizePassedToConstructorTest() {
+        new FixedSizeStack<>(-1);
     }
 
 }
