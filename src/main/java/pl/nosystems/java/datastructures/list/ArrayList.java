@@ -130,8 +130,8 @@ public class ArrayList<E> {
         private final Object[] elementArray;
         private final boolean[] indexInElementArrayContainsObject;
 
-        private final int NOT_COMPUTED_INDEX = -300;
-        private final int NO_VALUE_INDEX = -100;
+        private static final int NOT_COMPUTED_INDEX = -300;
+        private static final int NO_VALUE_INDEX = -100;
 
         private int currentIndex = -1;
         private int nextIndexThatContains = NOT_COMPUTED_INDEX;

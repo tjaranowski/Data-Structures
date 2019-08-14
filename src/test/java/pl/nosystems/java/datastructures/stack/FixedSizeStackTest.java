@@ -16,7 +16,7 @@ public final class FixedSizeStackTest {
 
     @Before
     public void setUp() {
-        stack = new FixedSizeStack<>(new Integer[STACK_SIZE]);
+        stack = new FixedSizeStack<>(STACK_SIZE);
     }
 
     @Test

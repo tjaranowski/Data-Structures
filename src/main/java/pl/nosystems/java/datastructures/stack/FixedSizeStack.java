@@ -2,7 +2,7 @@ package pl.nosystems.java.datastructures.stack;
 
 @SuppressWarnings("WeakerAccess")
 public final class FixedSizeStack<T> implements Stack<T> {
-    private T[] stack;
+    private Object[] stack;
     private int stackPointer = 0;
 
     private void internalPutAfterChecks(final T value) {
@@ -10,11 +10,11 @@ public final class FixedSizeStack<T> implements Stack<T> {
         stackPointer++;
     }
 
-    public FixedSizeStack(final T[] stackContainer) {
-        if(stackContainer == null || stackContainer.length <= 0) {
-            throw new IllegalArgumentException("stackSize must be positive");
+    public FixedSizeStack(int size) {
+        if(size <= 0) {
+            throw new IllegalArgumentException("Stack size must be positive. Size passed: " + size);
         }
-        stack = stackContainer;
+        stack = new Object[size];
     }
 
     public boolean putWithResult(final T value) {
@@ -42,7 +42,8 @@ public final class FixedSizeStack<T> implements Stack<T> {
             throw new StackEmpty();
         }
 
-        return stack[--stackPointer];
+        //noinspection unchecked
+        return (T) stack[--stackPointer];
     }
 
     @Override
