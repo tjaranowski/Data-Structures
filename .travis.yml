@@ -10,7 +10,7 @@ before_script:
   - ./cc-test-reporter before-build
   
 script:
-  - gradle build test jTR
+  - ./gradlew build test jTR
   
 after_script:
   - ./cc-test-reporter format-coverage --input-type jacoco -d ./build/reports/jacoco/test/jacocoTestReport.xml
