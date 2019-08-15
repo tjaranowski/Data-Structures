@@ -59,8 +59,8 @@ public class Vector<E> {
      * @param index index from which to return element from
      * @return element under given index
      */
-    public Integer get(int index) {
-        return (Integer) objectArray[index];
+    public E get(int index) {
+        return (E) objectArray[index];
     }
 
     /**
