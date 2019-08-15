@@ -23,6 +23,8 @@ Data structures implemented in Java
   - FixedSizeStack
 - Trees
   - BinaryTree
+- Maps
+  - HashMap
 - CircularBuffer
 
 # Build instructions
