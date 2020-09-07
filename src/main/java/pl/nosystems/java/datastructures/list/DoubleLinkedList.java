@@ -1,14 +1,11 @@
 package pl.nosystems.java.datastructures.list;
 
+import pl.nosystems.java.datastructures.Iterator;
+
 import java.util.NoSuchElementException;
 
 @SuppressWarnings("WeakerAccess")
 public final class DoubleLinkedList<T> {
-
-    public interface Iterator<T> {
-        boolean hasNext();
-        T getNextAndMovePointerToSubsequentElement();
-    }
 
     private DoubleLinkedListNode<T> root;
     private DoubleLinkedListNode<T> lastNode;
@@ -122,7 +119,7 @@ public final class DoubleLinkedList<T> {
 
            
             @Override
-            public T getNextAndMovePointerToSubsequentElement() {
+            public T next() {
                 if(isBeforeRoot) {
                     isBeforeRoot = false;
                     if(currentNode == null) {

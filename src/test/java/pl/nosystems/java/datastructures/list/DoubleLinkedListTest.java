@@ -2,6 +2,7 @@ package pl.nosystems.java.datastructures.list;
 
 import org.junit.Before;
 import org.junit.Test;
+import pl.nosystems.java.datastructures.Iterator;
 
 import java.util.NoSuchElementException;
 
@@ -23,7 +24,7 @@ public final class DoubleLinkedListTest {
     @Test
     public void noElementsTest() {
         assertThat(list.getSize(),is(equalTo(0)));
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
         assertFalse(iterator.hasNext());
     }
 
@@ -31,9 +32,9 @@ public final class DoubleLinkedListTest {
     public void addOneElementTest() {
         list.add(VALUE);
         assertThat(list.getSize(),is(equalTo(1)));
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
         assertTrue(iterator.hasNext());
-        final Integer data = iterator.getNextAndMovePointerToSubsequentElement();
+        final Integer data = iterator.next();
         assertThat(data,is(equalTo(VALUE)));
         assertFalse(iterator.hasNext());
     }
@@ -44,13 +45,13 @@ public final class DoubleLinkedListTest {
         list.add(VALUE+1);
         assertThat(list.getSize(),is(equalTo(2)));
 
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
         assertTrue(iterator.hasNext());
-        Integer data = iterator.getNextAndMovePointerToSubsequentElement();
+        Integer data = iterator.next();
         assertThat(data,is(equalTo(VALUE)));
         assertTrue(iterator.hasNext());
 
-        data = iterator.getNextAndMovePointerToSubsequentElement();
+        data = iterator.next();
         assertThat(data,is(equalTo(VALUE+1)));
         assertFalse(iterator.hasNext());
     }
@@ -62,10 +63,10 @@ public final class DoubleLinkedListTest {
         }
         assertThat(list.getSize(),is(equalTo(100)));
 
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
         for (int i = 0; i < 100; i++) {
             assertTrue(iterator.hasNext());
-            final Integer data = iterator.getNextAndMovePointerToSubsequentElement();
+            final Integer data = iterator.next();
             assertThat(data,is(equalTo(i)));
         }
 
@@ -76,7 +77,7 @@ public final class DoubleLinkedListTest {
     public void addNoneRemoveOneTest() {
         assertFalse(list.removeFirst(VALUE));
         assertThat(list.getSize(),is(equalTo(0)));
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
         assertFalse(iterator.hasNext());
     }
 
@@ -86,7 +87,7 @@ public final class DoubleLinkedListTest {
         assertTrue(list.removeFirst(VALUE));
 
         assertThat(list.getSize(),is(equalTo(0)));
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
         assertFalse(iterator.hasNext());
     }
 
@@ -98,7 +99,7 @@ public final class DoubleLinkedListTest {
 
         assertThat(list.getSize(),is(equalTo(1)));
 
-        DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        Iterator<Integer> iterator = list.getIterator();
         assertTrue(iterator.hasNext());
 
         assertTrue(list.removeFirst(VALUE));
@@ -116,13 +117,13 @@ public final class DoubleLinkedListTest {
 
         assertThat(list.getSize(),is(equalTo(2)));
 
-        DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        Iterator<Integer> iterator = list.getIterator();
         assertTrue(iterator.hasNext());
 
-        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.next();
         assertTrue(iterator.hasNext());
 
-        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.next();
         assertFalse(iterator.hasNext());
     }
 
@@ -135,16 +136,16 @@ public final class DoubleLinkedListTest {
 
         assertThat(list.getSize(),is(equalTo(3)));
 
-        DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        Iterator<Integer> iterator = list.getIterator();
         assertTrue(iterator.hasNext());
 
-        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.next();
         assertTrue(iterator.hasNext());
 
-        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.next();
         assertTrue(iterator.hasNext());
 
-        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.next();
         assertFalse(iterator.hasNext());
     }
 
@@ -160,7 +161,7 @@ public final class DoubleLinkedListTest {
 
         assertThat(list.getSize(),is(equalTo(0)));
 
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
         assertFalse(iterator.hasNext());
     }
 
@@ -176,7 +177,7 @@ public final class DoubleLinkedListTest {
 
         assertThat(list.getSize(),is(equalTo(0)));
 
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
         assertFalse(iterator.hasNext());
     }
 
@@ -195,7 +196,7 @@ public final class DoubleLinkedListTest {
 
         assertThat(list.getSize(),is(equalTo(0)));
 
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
         assertFalse(iterator.hasNext());
     }
 
@@ -210,7 +211,7 @@ public final class DoubleLinkedListTest {
 
         assertThat(list.getSize(),is(equalTo(0)));
 
-        DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        Iterator<Integer> iterator = list.getIterator();
         assertFalse(iterator.hasNext());
     }
 
@@ -224,31 +225,31 @@ public final class DoubleLinkedListTest {
 
         assertThat(list.getSize(),is(equalTo(3)));
 
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
         assertTrue(iterator.hasNext());
 
-        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.next();
         assertTrue(iterator.hasNext());
 
-        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.next();
         assertTrue(iterator.hasNext());
 
-        iterator.getNextAndMovePointerToSubsequentElement();
+        iterator.next();
         assertFalse(iterator.hasNext());
     }
 
     @Test(expected = NoSuchElementException.class)
     public void iterateAfterHasNextReturnsFalseOnEmptyListTest() {
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
-        iterator.getNextAndMovePointerToSubsequentElement();
+        final Iterator<Integer> iterator = list.getIterator();
+        iterator.next();
     }
 
     @Test(expected = NoSuchElementException.class)
     public void iterateAfterHasNextReturnsFalseOnNonEmptyListTest() {
         list.add(VALUE);
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
-        iterator.getNextAndMovePointerToSubsequentElement();
-        iterator.getNextAndMovePointerToSubsequentElement();
+        final Iterator<Integer> iterator = list.getIterator();
+        iterator.next();
+        iterator.next();
     }
 
     @Test
@@ -261,13 +262,13 @@ public final class DoubleLinkedListTest {
 
         assertThat(list.getSize(),is(equalTo(2)));
 
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
+        final Iterator<Integer> iterator = list.getIterator();
 
         assertTrue(iterator.hasNext());
-        assertThat(iterator.getNextAndMovePointerToSubsequentElement(),is(equalTo(1)));
+        assertThat(iterator.next(),is(equalTo(1)));
 
         assertTrue(iterator.hasNext());
-        assertThat(iterator.getNextAndMovePointerToSubsequentElement(),is(equalTo(3)));
+        assertThat(iterator.next(),is(equalTo(3)));
 
         assertFalse(iterator.hasNext());
     }
@@ -280,9 +281,9 @@ public final class DoubleLinkedListTest {
 
         assertTrue(list.removeFirst(2));
 
-        final DoubleLinkedList.Iterator<Integer> iterator = list.getIterator();
-        iterator.getNextAndMovePointerToSubsequentElement();
-        iterator.getNextAndMovePointerToSubsequentElement();
-        iterator.getNextAndMovePointerToSubsequentElement();
+        final Iterator<Integer> iterator = list.getIterator();
+        iterator.next();
+        iterator.next();
+        iterator.next();
     }
 }

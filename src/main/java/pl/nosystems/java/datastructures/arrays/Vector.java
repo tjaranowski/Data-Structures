@@ -20,8 +20,12 @@ public class Vector<E> {
      * [0 (inclusive), initialCapacity (exclusive) )
      *
      * @param initialCapacity initial capacity
+     * @throws IllegalArgumentException when initialCapacity is not positive
      */
     public Vector(int initialCapacity) {
+        if (initialCapacity <= 0) {
+            throw new IllegalArgumentException("Vector capacity must be positive. Requested capacity: " + initialCapacity);
+        }
         objectArray = new Object[initialCapacity];
     }
 
@@ -60,6 +64,7 @@ public class Vector<E> {
      * @return element under given index
      */
     public E get(int index) {
+        //noinspection unchecked
         return (E) objectArray[index];
     }
 
@@ -78,7 +83,7 @@ public class Vector<E> {
     public boolean contains(E element) {
         for (Object o : objectArray) {
             E elementFromArray = (E) o;
-            if (Objects.equals(o, element)) {
+            if (Objects.equals(elementFromArray, element)) {
                 return true;
             }
         }

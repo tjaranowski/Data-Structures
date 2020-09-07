@@ -7,6 +7,13 @@ import static org.junit.Assert.*;
 
 public class VectorTest {
 
+    @Test(expected = IllegalArgumentException.class)
+    public void givenInvalidInitialCapacityExceptionShouldBeThrown() {
+
+        // Given - When - Then
+        new Vector<>(-1);
+    }
+
     @Test
     public void givenNewlyCreatedVectorShouldBeEmpty() {
 

@@ -2,10 +2,10 @@ package pl.nosystems.java.datastructures.set;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Iterator;
+import pl.nosystems.java.datastructures.Iterator;
 
 import static org.junit.Assert.*;
+
 
 public class ArraySetTest {
     private ArraySet<Integer> arraySet;

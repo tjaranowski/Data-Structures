@@ -2,8 +2,8 @@ package pl.nosystems.java.datastructures.list;
 
 import org.junit.Before;
 import org.junit.Test;
+import pl.nosystems.java.datastructures.Iterator;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.hamcrest.CoreMatchers.anyOf;

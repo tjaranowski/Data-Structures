@@ -1,10 +1,16 @@
 package pl.nosystems.java.datastructures.list;
 
-import java.util.Iterator;
+import pl.nosystems.java.datastructures.Iterator;
+
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
 
+/**
+ * Collection that holds items in Arrays.
+ *
+ * @param <E> Elements that this data structure will hold
+ */
 public class ArrayList<E> {
     private static final int DEFAULT_INITIAL_CAPACITY = 10;
 
@@ -182,16 +188,6 @@ public class ArrayList<E> {
             nextIndexThatContains = NOT_COMPUTED_INDEX;
 
             return (E) elementArray[currentIndex];
-        }
-
-        /**
-         * Currently not supported - will throw java.lang.UnsupportedOperationException
-         * <p>
-         * {@inheritDoc}
-         */
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException();
         }
 
         /**
