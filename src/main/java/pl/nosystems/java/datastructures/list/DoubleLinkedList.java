@@ -313,4 +313,40 @@ public final class DoubleLinkedList<T> {
 
         }
     }
+
+    private static class DoubleLinkedListNode<T> {
+        private DoubleLinkedListNode<T> previous;
+        private final T data;
+        private DoubleLinkedListNode<T> next;
+
+        private DoubleLinkedListNode(T data) {
+            this.data = data;
+        }
+
+        private DoubleLinkedListNode(DoubleLinkedListNode<T> previous, T data, DoubleLinkedListNode<T> next) {
+            this.previous = previous;
+            this.data = data;
+            this.next = next;
+        }
+
+        private DoubleLinkedListNode<T> getPrevious() {
+            return previous;
+        }
+
+        private void setPrevious(DoubleLinkedListNode<T> previous) {
+            this.previous = previous;
+        }
+
+        private T getData() {
+            return data;
+        }
+
+        private DoubleLinkedListNode<T> getNext() {
+            return next;
+        }
+
+        private void setNext(DoubleLinkedListNode<T> next) {
+            this.next = next;
+        }
+    }
 }

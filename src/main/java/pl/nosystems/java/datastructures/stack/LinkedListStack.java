@@ -1,32 +1,11 @@
 package pl.nosystems.java.datastructures.stack;
 
-import pl.nosystems.java.datastructures.list.DoubleLinkedListNode;
+import pl.nosystems.java.datastructures.list.DoubleLinkedList;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+
+@SuppressWarnings({"WeakerAccess"})
 public class LinkedListStack<T> implements Stack<T> {
-    private DoubleLinkedListNode<T> stackHead;
-    private DoubleLinkedListNode<T> stackTail;
-
-    private T internalPopAfterChecks() {
-        final T data = stackTail.getData();
-        if(stackTail == stackHead) {
-            stackTail = stackHead = null;
-            return data;
-        }
-        stackTail = stackTail.getPrevious();
-        stackTail.setNext(null);
-        return data;
-    }
-
-    private void internalPutAfterChecks(T data) {
-        if(stackHead == null) {
-            stackHead = stackTail = new DoubleLinkedListNode<>(data);
-            return;
-        }
-        final DoubleLinkedListNode<T> previousTail = stackTail;
-        stackTail = new DoubleLinkedListNode<>(previousTail,data,null);
-        previousTail.setNext(stackTail);
-    }
+    private final DoubleLinkedList<T> doubleLinkedList = new DoubleLinkedList<>();
 
     @SuppressWarnings("SameReturnValue")
     public boolean putWithResult(final T value) {
@@ -42,7 +21,7 @@ public class LinkedListStack<T> implements Stack<T> {
 
     @Override
     public T popOrThrow() throws StackEmpty {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new StackEmpty();
         }
 
@@ -57,7 +36,15 @@ public class LinkedListStack<T> implements Stack<T> {
 
     @Override
     public boolean isEmpty() {
-        return stackHead==null;
+        return doubleLinkedList.isEmpty();
     }
 
+
+    private T internalPopAfterChecks() {
+        return doubleLinkedList.removeLast();
+    }
+
+    private void internalPutAfterChecks(T data) {
+        doubleLinkedList.addLast(data);
+    }
 }
