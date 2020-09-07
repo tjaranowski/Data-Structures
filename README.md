@@ -9,23 +9,23 @@ Data structures implemented in Java
 
 - Arrays
   - Vector
+- CircularBuffer
 - Lists
   - ArrayList
   - DoubleLinkedList
   - LinkedList
+- Maps
+  - HashMap
 - Queues
-  - LIFOLinkedListStackQueue
   - LIFOFixedSizeStackQueue
+  - LIFOLinkedListStackQueue
+- Trees
+  - BinaryTree
 - Sets
   - ArraySet
 - Stacks
-  - LinkedListStack
   - FixedSizeStack
-- Trees
-  - BinaryTree
-- Maps
-  - HashMap
-- CircularBuffer
+  - LinkedListStack
 
 # Build instructions
 This project uses [Gradle](https://gradle.org/) build system and utilizes [gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html). That means that to build this project You need to invoke gradle wrapper with parameter build like `gradlew build`.
