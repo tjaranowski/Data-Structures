@@ -16,9 +16,6 @@ Data structures implemented in Java
   - LinkedList
 - Maps
   - HashMap
-- Queues
-  - LIFOFixedSizeStackQueue
-  - LIFOLinkedListStackQueue
 - Trees
   - BinaryTree
 - Sets
